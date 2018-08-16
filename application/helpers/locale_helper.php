@@ -1,5 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+const DEFAULT_LANGUAGE = 'english';
+const DEFAULT_LANGUAGE_CODE = 'en-US';
+
 /**
  * Currency locale helper
  */
@@ -18,7 +21,8 @@ function current_language_code($load_system_language = FALSE)
 		}
 	}
 
-	return get_instance()->config->item('language_code');
+	$language_code = get_instance()->config->item('language_code');
+	return empty($language_code) ? DEFAULT_LANGUAGE_CODE : $language_code;
 }
 
 function current_language($load_system_language = FALSE)
@@ -35,7 +39,8 @@ function current_language($load_system_language = FALSE)
 		}
 	}
 
-	return get_instance()->config->item('language');
+	$language = get_instance()->config->item('language');
+	return empty($language) ? DEFAULT_LANGUAGE : $language;
 }
 
 function get_languages()
@@ -206,6 +211,7 @@ function get_timeformats()
 	);
 }
 
+
 /*
 Gets the payment options
 */
@@ -215,6 +221,7 @@ function get_payment_options()
 	$lang = get_instance()->lang;
 
 	$payments = array();
+
 
 	if($config->item('payment_options_order') == 'debitcreditcash')
 	{
