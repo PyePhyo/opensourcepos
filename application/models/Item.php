@@ -374,7 +374,7 @@ class Item extends CI_Model
 		$this->db->where('location_id', $location_id);
 		$this->db->where_in('items.item_id', $item_ids);
 
- 		return $this->db->get();
+		return $this->db->get();
 	}
 
 	/*
